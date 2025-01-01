@@ -5,18 +5,18 @@ class OrdersController < ApplicationController
   end
 
   def create
-  
+
     # find the carted products for the current user
     @carted_products = CartedProduct.where(status: "carted", user_id: current_user.id)
-  
-# calculate subtotal for all products in the cart by finding the quanty and price of each product and multiplying them together.
+
+    # calculate subtotal for all products in the cart by finding the quanty and price of each product and multiplying them together.
     calculated_subtotal = 0
     @carted_products.each do |cp|
       calculated_subtotal += cp.quantity * cp.product.price
     end
 
     # find tax by multiplying the subtotal by the tax rate, the nadding the result to the subtotal
-    tax_rate = .103
+    tax_rate = 0.103
     calculated_tax = calculated_subtotal * tax_rate
     calculated_total = calculated_subtotal + calculated_tax
 
@@ -42,10 +42,8 @@ class OrdersController < ApplicationController
     @order = Order.find_by(id: params[:id])
     if @order.user_id == current_user.id
       render :show
-
     else
       render json: {}, status: :unnauthorized
     end
   end
-
 end
