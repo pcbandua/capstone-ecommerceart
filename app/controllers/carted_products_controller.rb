@@ -21,14 +21,10 @@ class CartedProductsController < ApplicationController
     )
     render :show
   end
-end
 
-# create_table "carted_products", force: :cascade do |t|
-#   t.integer "user_id"
-#   t.integer "product_id"
-#   t.integer "quantity"
-#   t.integer "order_id"
-#   t.string "status"
-#   t.datetime "created_at", null: false
-#   t.datetime "updated_at", null: false
-# end
+  def destroy
+    @carted_product = CartedProduct.find_by(id: params[:id])
+    @carted_product.destroy
+    render json: { message: "The product has been successfuly deleted" }
+  end
+end
