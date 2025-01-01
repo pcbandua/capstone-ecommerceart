@@ -7,4 +7,13 @@ class CartedProductsControllerTest < ActionDispatch::IntegrationTest
       assert_response 200
     end
   end
+
+  test "update" do
+    carted_product = CartedProduct.first
+    patch "/carted_products/#{carted_product.id}.json", params: { name: "Updated name" }
+    assert_response 200
+
+    data = JSON.parse(response.body)
+    assert_equal "Updated name", data["name"]
+  end
 end

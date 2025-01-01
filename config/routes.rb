@@ -16,8 +16,6 @@ Rails.application.routes.draw do
   post "/products" => "products#create"
 
   # cartedproducts
-  post "/carter_products" => "carted_products#create"
-
-  # Defines the root path route ("/")
-  # root "posts#index"
+  post "/carted_products" => "carted_products#create"
+  patch "/carted_products/:id" => "carted_products#update"
 end
