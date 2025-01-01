@@ -58,4 +58,29 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id])
     render :show
   end
+
+  def update
+    @product = Product.find_by(id: params[:id])
+
+    if @product
+      @product.update(
+        artist_id: params[:artist_id] || @product.artist_id,
+        artpiece_name: params[:artpiece_name] || @product.artpiece_name,
+        description: params[:description] || @product.description,
+        image_url: params[:image_url] || @product.image_url,
+        inventory: params[:inventory] || @product.inventory,
+        size: params[:size] || @product.size,
+        price: params[:price] || @product.price,
+      )
+      render :show
+    else
+      render json: { mesaage: "product not found" }
+    end
+  end
+
+  def destroy
+    @product = Product.find_by(id params[:id])
+    @product.destroy
+    render json: { message: "product has been deleted" }
+  end
 end

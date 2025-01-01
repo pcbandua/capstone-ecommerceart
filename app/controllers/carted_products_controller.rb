@@ -10,7 +10,7 @@ class CartedProductsController < ApplicationController
       user_id: params[:user_id],
       product_id: params[product_id],
       quantity: params[quantity],
-      # order_id: params[order_id],
+      order_id: params[order_id],
       status: "carted",
     )
     render :show
