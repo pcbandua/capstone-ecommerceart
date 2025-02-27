@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
 
   # Create action for products and automatically generates variants
   def create
-    @product = Product.create(
+    @product = Product.new(
       artist_id: params[:artist_id],
       artpiece_name: params[:artpiece_name],
       description: params[:description],
