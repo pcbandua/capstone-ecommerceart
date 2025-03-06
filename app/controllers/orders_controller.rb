@@ -38,12 +38,27 @@ class OrdersController < ApplicationController
     render :show
   end
 
+  # def show
+  #   @order = Order.find_by(id: params[:id])
+  #   if @order.user_id == current_user.id
+  #     render :show
+  #   else
+  #     render json: {}, status: :unauthorized
+  #   end
+  # end
+
   def show
     @order = Order.find_by(id: params[:id])
-    if @order.user_id == current_user.id
+
+    if @order.nil?
+      # Handle the case where the order is not found
+      render json: { error: "Order not found" }, status: :not_found
+    elsif @order.user_id == current_user.id
+      # Render the order if it belongs to the current user
       render :show
     else
-      render json: {}, status: :unnauthorized
+      # Handle unauthorized access
+      render json: { error: "Unauthorized" }, status: :unauthorized
     end
   end
 end

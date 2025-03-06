@@ -1,7 +1,7 @@
-  json.id photo.id
-  json.user_id photo.user_id
-  json.subtotal photo.subtotal
-  json.tax photo.tax
-  json.total photo.total
-  json.created_at photo.created_at
-  json.updated_at photo.updated_at
+  json.id order.id
+  json.user_id order.user_id
+  json.subtotal order.subtotal
+  json.tax order.tax
+  json.total order.total
+  json.created_at order.created_at
+  json.updated_at order.updated_at
