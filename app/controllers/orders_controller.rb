@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   def index
-    @order = Order.where(user_id: current_user.id)
+    @orders = Order.where(user_id: current_user.id)
     render :index
   end
 
@@ -37,15 +37,6 @@ class OrdersController < ApplicationController
     end
     render :show
   end
-
-  # def show
-  #   @order = Order.find_by(id: params[:id])
-  #   if @order.user_id == current_user.id
-  #     render :show
-  #   else
-  #     render json: {}, status: :unauthorized
-  #   end
-  # end
 
   def show
     @order = Order.find_by(id: params[:id])
