@@ -1,6 +1,6 @@
 class CartedProduct < ApplicationRecord
   belongs_to :order, optional: true
-  has_many :product
+  belongs_to :product
   belongs_to :user
 
   def subtotal
